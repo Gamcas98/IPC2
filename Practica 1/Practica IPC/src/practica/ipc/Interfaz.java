@@ -5,6 +5,8 @@
  */
 package practica.ipc;
 
+import static oracle.jrockit.jfr.events.Bits.intValue;
+
 /**
  *
  * @author joses
@@ -15,13 +17,10 @@ public class Interfaz extends javax.swing.JFrame {
     private boolean inicio = true;
     private boolean operacion1;
     private boolean operacion2;
-    private double a;
-    private double b;
-    private double c;
-    private double memoria = 0;
+    private double fact;
+    private String bin;
     private double resultado;
     private double valor1, valor2;
-    private String cadena;
     private String funciones;
     private String tipoOperacion;
 
@@ -51,7 +50,6 @@ public class Interfaz extends javax.swing.JFrame {
         btnIgual = new javax.swing.JButton();
         CE = new javax.swing.JButton();
         retroceso = new javax.swing.JButton();
-        C = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         raiz = new javax.swing.JButton();
@@ -60,11 +58,12 @@ public class Interfaz extends javax.swing.JFrame {
         division = new javax.swing.JButton();
         mas = new javax.swing.JButton();
         menos = new javax.swing.JButton();
+        mod = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        factorial = new javax.swing.JButton();
         permuitacion = new javax.swing.JButton();
         combinacion = new javax.swing.JButton();
+        btnF = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         decABin = new javax.swing.JButton();
@@ -76,7 +75,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         secundaria.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
         secundaria.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        secundaria.setText("F");
+        secundaria.setText("M");
 
         principal.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         principal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -202,21 +201,17 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        C.setText("C");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(retroceso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CE, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(C, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(CE, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -258,8 +253,7 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(retroceso, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CE, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(C, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CE, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -338,6 +332,13 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        mod.setText("Mod");
+        mod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -367,6 +368,10 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addComponent(menos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(mod)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,7 +390,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(menos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mod, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
@@ -394,11 +400,26 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Calculo Discreto");
 
-        factorial.setText("N!");
-
         permuitacion.setText("P(N,R)");
+        permuitacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                permuitacionActionPerformed(evt);
+            }
+        });
 
         combinacion.setText("C(N,R)");
+        combinacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combinacionActionPerformed(evt);
+            }
+        });
+
+        btnF.setText("N!");
+        btnF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -407,14 +428,14 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(16, Short.MAX_VALUE)
+                        .addContainerGap(24, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(combinacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(permuitacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(factorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(permuitacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -422,9 +443,9 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(factorial, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
+                .addComponent(btnF, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(permuitacion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(combinacion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -438,10 +459,25 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel4.setText("Convertidor Numerico");
 
         decABin.setText("Decimal a Binario");
+        decABin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decABinActionPerformed(evt);
+            }
+        });
 
         decAHex.setText("Decimal a Hexadecimal");
+        decAHex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decAHexActionPerformed(evt);
+            }
+        });
 
         decAOC.setText("Decimal a Octal");
+        decAOC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decAOCActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -500,13 +536,13 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -726,9 +762,9 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_CEActionPerformed
 
     private void retrocesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrocesoActionPerformed
-        if (principal.getText().length() > 1) {
+        if (principal.getText().length() > 0) {
             principal.setText(principal.getText().substring(0, principal.getText().length() - 1));
-            if (principal.getText().length() <= 1) {
+            if (principal.getText().length() == 0) {
                 principal.setText("0");
                 inicio = true;
             }
@@ -775,6 +811,133 @@ public class Interfaz extends javax.swing.JFrame {
         tipoOperacion = "√";
     }//GEN-LAST:event_raizActionPerformed
 
+    private void modActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "MOD");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "MOD");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "MOD");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "MOD";
+    }//GEN-LAST:event_modActionPerformed
+
+    private void btnFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFActionPerformed
+        funciones = "!";
+        funcion();
+    }//GEN-LAST:event_btnFActionPerformed
+
+    private void permuitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_permuitacionActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "P");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "P");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "P");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "P";
+    }//GEN-LAST:event_permuitacionActionPerformed
+
+    private void combinacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combinacionActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "C");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "C");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "C");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "C";
+    }//GEN-LAST:event_combinacionActionPerformed
+
+    private void decABinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decABinActionPerformed
+        funciones = "BIN";
+        funcion();
+    }//GEN-LAST:event_decABinActionPerformed
+
+    private void decAOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decAOCActionPerformed
+
+        funciones = "OCTAL";
+        funcion();
+
+    }//GEN-LAST:event_decAOCActionPerformed
+
+    private void decAHexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decAHexActionPerformed
+
+        funciones = "HEXA";
+        funcion();
+
+    }//GEN-LAST:event_decAHexActionPerformed
+
+    public int factorial(double numero) {
+
+        if (numero == 0) {
+            return 1;
+        } else {
+            return (int) (numero * factorial(numero - 1));
+        }
+
+    }
+
+    public void funcion() {
+        switch (funciones) {
+
+            case "!":
+                valor1 = Double.parseDouble(principal.getText());
+                secundaria.setText(valor1 + "!");
+                fact = factorial(valor1);
+                principal.setText(fact + "");
+                break;
+
+            case "BIN":
+                valor1 = Double.parseDouble(principal.getText());
+                secundaria.setText(valor1 + " toBin");
+                bin = Integer.toBinaryString(intValue(valor1));
+                principal.setText(bin + "");
+                break;
+
+            case "OCTAL":
+                valor1 = Double.parseDouble(principal.getText());
+                secundaria.setText(valor1 + " toOctal");
+                bin = Integer.toOctalString(intValue(valor1));
+                principal.setText(bin + "");
+                break;
+
+            case "HEXA":
+                valor1 = Double.parseDouble(principal.getText());
+                secundaria.setText(valor1 + " toHexadecimal");
+                bin = Integer.toHexString(intValue(valor1));
+                principal.setText(bin + "");
+                break;
+        }
+    }
+
     public void operaciones(double valor1, double valor2) {
 
         switch (tipoOperacion) {
@@ -782,19 +945,16 @@ public class Interfaz extends javax.swing.JFrame {
             case "+":
                 resultado = valor1 + valor2;
                 principal.setText(resultado + "");
-                valor1 = Double.parseDouble(principal.getText());
                 break;
 
             case "-":
                 resultado = valor1 - valor2;
                 principal.setText(resultado + "");
-                valor1 = Double.parseDouble(principal.getText());
                 break;
 
             case "*":
                 resultado = valor1 * valor2;
                 principal.setText(resultado + "");
-                valor1 = Double.parseDouble(principal.getText());
                 break;
 
             case "/":
@@ -803,28 +963,40 @@ public class Interfaz extends javax.swing.JFrame {
                 } else {
                     resultado = valor1 / valor2;
                     principal.setText(resultado + "");
-                    valor1 = Double.parseDouble(principal.getText());
                 }
                 break;
 
             case "^":
                 resultado = Math.pow(valor1, valor2);
                 principal.setText(resultado + "");
-                valor1 = Double.parseDouble(principal.getText());
                 break;
 
             case "√":
-                resultado = Math.pow(valor2, (1/valor1));
+                resultado = Math.pow(valor2, (1 / valor1));
                 principal.setText(resultado + "");
-                valor1 = Double.parseDouble(principal.getText());
                 break;
+
+            case "MOD":
+                resultado = valor1 % valor2;
+                principal.setText(resultado + "");
+                break;
+
+            case "P":
+                resultado = (factorial(valor1)) / factorial(valor1 - valor2);
+                principal.setText(resultado + "");
+                break;
+
+            case "C":
+                resultado = (factorial(valor1)) / (factorial(valor2)) * (factorial(valor1 - valor2));
+                principal.setText(resultado + "");
+                break;
+
         }
 
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton C;
     private javax.swing.JButton CE;
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
@@ -836,13 +1008,13 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
+    private javax.swing.JButton btnF;
     private javax.swing.JButton btnIgual;
     private javax.swing.JButton combinacion;
     private javax.swing.JButton decABin;
     private javax.swing.JButton decAHex;
     private javax.swing.JButton decAOC;
     private javax.swing.JButton division;
-    private javax.swing.JButton factorial;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -853,6 +1025,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JButton mas;
     private javax.swing.JButton menos;
+    private javax.swing.JButton mod;
     private javax.swing.JButton multi;
     private javax.swing.JButton permuitacion;
     private javax.swing.JButton potencia;
