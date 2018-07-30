@@ -12,21 +12,19 @@ package practica.ipc;
 public class Interfaz extends javax.swing.JFrame {
 
     private boolean igual;
-    private boolean inicio=true;
+    private boolean inicio = true;
     private boolean operacion1;
     private boolean operacion2;
     private double a;
     private double b;
     private double c;
-    private double memoria=0;
+    private double memoria = 0;
     private double resultado;
     private double valor1, valor2;
     private String cadena;
     private String funciones;
-    private String tipoOpeacion;
-    
-    
-    
+    private String tipoOperacion;
+
     public Interfaz() {
         initComponents();
     }
@@ -101,6 +99,9 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
+        secundaria.setEditable(false);
+        principal.setEditable(false);
+
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Teclado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 2, 14))); // NOI18N
 
         btn7.setText("7");
@@ -167,6 +168,11 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         punto.setText(".");
+        punto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                puntoActionPerformed(evt);
+            }
+        });
 
         btn0.setText("0");
         btn0.addActionListener(new java.awt.event.ActionListener() {
@@ -176,10 +182,25 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         btnIgual.setText("=");
+        btnIgual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIgualActionPerformed(evt);
+            }
+        });
 
         CE.setText("CE");
+        CE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CEActionPerformed(evt);
+            }
+        });
 
         retroceso.setText("<--");
+        retroceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retrocesoActionPerformed(evt);
+            }
+        });
 
         C.setText("C");
 
@@ -275,16 +296,47 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel2.setText("Operaciones Basicas");
 
         raiz.setText("y√x");
+        raiz.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raizActionPerformed(evt);
+            }
+        });
 
         potencia.setText("X^Y");
+        potencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                potenciaActionPerformed(evt);
+            }
+        });
 
+        multi.setFont(new java.awt.Font("Wide Latin", 2, 12)); // NOI18N
         multi.setText("*");
+        multi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                multiActionPerformed(evt);
+            }
+        });
 
         division.setText("/");
+        division.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                divisionActionPerformed(evt);
+            }
+        });
 
         mas.setText("+");
+        mas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masActionPerformed(evt);
+            }
+        });
 
         menos.setText("-");
+        menos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -461,45 +513,314 @@ public class Interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("1");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "1");
+        }
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("2");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "2");
+        }
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("3");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "3");
+        }
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("4");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "4");
+        }
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("5");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "5");
+        }
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("6");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "6");
+        }
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("7");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "7");
+        }
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("8");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "8");
+        }
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("9");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "9");
+        }
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-        // TODO add your handling code here:
+        if (inicio == true) {
+            principal.setText("");
+            principal.setText("0");
+            inicio = false;
+        } else {
+            principal.setText(principal.getText() + "0");
+        }
     }//GEN-LAST:event_btn0ActionPerformed
 
+    private void puntoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntoActionPerformed
+        if (principal.getText().contains(".")) {
+        } else {
+            principal.setText(principal.getText() + ".");
+            inicio = false;
+        }
+    }//GEN-LAST:event_puntoActionPerformed
+
+    private void masActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "+");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "+");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "+");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "+";
+    }//GEN-LAST:event_masActionPerformed
+
+    private void menosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "-");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "-");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "-");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "-";
+    }//GEN-LAST:event_menosActionPerformed
+
+    private void multiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "*");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "*");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "*");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "*";
+    }//GEN-LAST:event_multiActionPerformed
+
+    private void divisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divisionActionPerformed
+        inicio = true;
+        igual = true;
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "/");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "/");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "/");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "/";
+    }//GEN-LAST:event_divisionActionPerformed
+
+    private void btnIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIgualActionPerformed
+        inicio = true;
+        operacion1 = true;
+
+        if (igual == true) {
+            if (tipoOperacion == null) {
+
+            } else {
+                valor2 = Double.parseDouble(principal.getText());
+                secundaria.setText(secundaria.getText() + principal.getText());
+                operaciones(valor1, valor2);
+                igual = false;
+            }
+        } else {
+            secundaria.setText("");
+            operaciones(valor1, valor2);
+        }
+    }//GEN-LAST:event_btnIgualActionPerformed
+
+    private void CEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CEActionPerformed
+        principal.setText("0");
+        secundaria.setText("");
+        inicio = true;
+        funciones = "";
+    }//GEN-LAST:event_CEActionPerformed
+
+    private void retrocesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retrocesoActionPerformed
+        if (principal.getText().length() > 1) {
+            principal.setText(principal.getText().substring(0, principal.getText().length() - 1));
+            if (principal.getText().length() <= 1) {
+                principal.setText("0");
+                inicio = true;
+            }
+        }
+    }//GEN-LAST:event_retrocesoActionPerformed
+
+    private void potenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_potenciaActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "^");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "^");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "^");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "^";
+    }//GEN-LAST:event_potenciaActionPerformed
+
+    private void raizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raizActionPerformed
+        inicio = true;
+        igual = true;
+
+        if (operacion1 = true) {
+            valor1 = Double.parseDouble(principal.getText());
+            secundaria.setText("");
+            secundaria.setText(principal.getText() + "√");
+            operacion1 = false;
+        } else if (operacion2 = true) {
+            valor2 = Double.parseDouble(principal.getText());
+            secundaria.setText(principal.getText() + "√");
+            operacion2 = false;
+        } else {
+            secundaria.setText(principal.getText() + "√");
+            operaciones(resultado, valor2);
+        }
+        tipoOperacion = "√";
+    }//GEN-LAST:event_raizActionPerformed
+
+    public void operaciones(double valor1, double valor2) {
+
+        switch (tipoOperacion) {
+
+            case "+":
+                resultado = valor1 + valor2;
+                principal.setText(resultado + "");
+                valor1 = Double.parseDouble(principal.getText());
+                break;
+
+            case "-":
+                resultado = valor1 - valor2;
+                principal.setText(resultado + "");
+                valor1 = Double.parseDouble(principal.getText());
+                break;
+
+            case "*":
+                resultado = valor1 * valor2;
+                principal.setText(resultado + "");
+                valor1 = Double.parseDouble(principal.getText());
+                break;
+
+            case "/":
+                if (valor2 == 0) {
+                    principal.setText("ERROR");
+                } else {
+                    resultado = valor1 / valor2;
+                    principal.setText(resultado + "");
+                    valor1 = Double.parseDouble(principal.getText());
+                }
+                break;
+
+            case "^":
+                resultado = Math.pow(valor1, valor2);
+                principal.setText(resultado + "");
+                valor1 = Double.parseDouble(principal.getText());
+                break;
+
+            case "√":
+                resultado = Math.pow(valor2, (1/valor1));
+                principal.setText(resultado + "");
+                valor1 = Double.parseDouble(principal.getText());
+                break;
+        }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
